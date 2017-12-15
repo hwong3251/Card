@@ -33,6 +33,7 @@ public class Deck {
 				unDealt.add(n);
 			}
 		}
+		
 	}
 	
 	//return true when size of the deck is 0
@@ -60,7 +61,7 @@ public class Deck {
 			int n = rnd.nextInt(unDealt.size());
 			Dealt.add(unDealt.get(n));
 			unDealt.remove(n);
-			return Dealt.get(n);
+			return Dealt.get(0);
 		}
 		return null;
 	}
@@ -70,7 +71,20 @@ public class Deck {
 	{
 		while(Dealt.size()!=0)
 		{
-			
+			for(int i = 0; i < Dealt.size(); i++)
+			{
+				unDealt.add(Dealt.get(i));
+			}
 		}
+		int k = 51;
+		for(int j = unDealt.size()-1; j > 0; j--)
+		{
+			int r = (int)Math.floor(Math.random()*(k+1));
+			Card d = unDealt.get(k);
+			unDealt.set(j,unDealt.get(r));
+			unDealt.set(r, d);
+			k--;
+		}
+		
 	}
 }
