@@ -69,18 +69,29 @@ public class Deck {
 	//shuffle cards from Dealt list back into unDealt
 	public void shuffle()
 	{
-		while(Dealt.size()!=0)
+		while(Dealt.size()>0)
 		{
 			for(int i = 0; i < Dealt.size(); i++)
 			{
-				unDealt.add(Dealt.get(i));
+				Random r = new Random();
+				int x = r.nextInt(this.unDealt.size());
+				unDealt.add(Dealt.get(x));
+				Dealt.remove(x);
 			}
 		}
-		int k = 51;
+		
+		int k = unDealt.size();
+		
 		for(int j = unDealt.size()-1; j > 0; j--)
 		{
-			int r = (int)Math.floor(Math.random()*(k+1));
-			Card d = unDealt.get(k);
+			Random rand = new Random();
+			int r = rand.nextInt(this.unDealt.size());
+			int n = rand.nextInt(this.unDealt.size());
+			while(r==n)
+			{
+				r = rand.nextInt(this.unDealt.size());
+			}
+			Card d = unDealt.get(r);
 			unDealt.set(j,unDealt.get(r));
 			unDealt.set(r, d);
 			k--;
